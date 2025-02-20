@@ -11,8 +11,9 @@ export class StockItemComponent {
 
   toggleFavorite(event: Event) {
     event.stopPropagation(); // Chặn sự kiện click lan lên component cha
-    console.log('Button clicked!'); // Debug
+    console.log('Favorite toggled for:', this.stock.name); // Debug
     this.stock.favorite = !this.stock.favorite;
   }
+  
   
 }

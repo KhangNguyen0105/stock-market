@@ -1,6 +1,7 @@
 <div class="stock-list">
-    <app-stock-item *ngFor="let stock of stocks" 
-                    [stock]="stock"
-                    (click)="toggleFavorite(stock)">
+    <app-stock-item 
+      *ngFor="let stock of stocks" 
+      [stock]="stock">
     </app-stock-item>
-</div>
+  </div>
+  
