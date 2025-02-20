@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  place-items: center;
+  background: #f2f2f2;
+  /* background: linear-gradient(-135deg, #c850c0, #4158d0); */
+}
+::selection {
+  background: #4158d0;
+  color: #fff;
+}

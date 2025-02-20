@@ -1,0 +1,12 @@
+.stock-list {
+    display: flex;
+    flex-wrap: wrap;  /* Cho phép các phần tử tự xuống dòng */
+    gap: 16px; /* Khoảng cách giữa các stock */
+    justify-content: center; /* Canh giữa theo chiều ngang */
+    padding: 20px;
+}
+
+app-stock-item {
+    flex: 1 1 200px; /* Cố định mỗi stock có độ rộng tối thiểu là 200px */
+    max-width: 250px; /* Giới hạn độ rộng tối đa */
+}

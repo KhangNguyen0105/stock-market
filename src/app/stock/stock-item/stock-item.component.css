@@ -1,0 +1,110 @@
+/* .stock-container {
+    border: 1px solid black;
+    border-radius: 10px;
+    display: inline-block;
+    padding: 10px;
+}
+
+.stock-container .name h3,
+.stock-container .name h4 {
+    display: inline-block;
+}
+
+.price {
+    font-weight: bolder;
+}
+
+.stock-item {
+    text-align: center;
+}
+
+.positive {
+    color: rgb(35, 208, 35);
+}
+
+.negative {
+    color: red;
+} */
+
+.stock-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+    background-color: #f5f5f5;
+}
+
+/* .stock-item {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border: 1px solid #ddd;
+    width: 250px;
+} */
+
+.stock-item {
+    width: 250px; /* Đảm bảo tất cả stock-item có cùng kích thước */
+    height: 200px; /* Cố định chiều cao để không bị lệch */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    box-sizing: border-box;
+    text-align: center;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+  
+
+.name h3, .name h4 {
+    display: inline;
+    font-weight: bold;
+    margin: 0;
+}
+
+.price {
+    font-size: 20px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.positive {
+    color: green;
+}
+
+.negative {
+    color: red;
+}
+
+/* Style for the button */
+button {
+    margin-top: 15px;
+    padding: 8px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #ff7eb3, #ff758c);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #ff6584, #ff4f70);
+    transform: scale(1.05);
+}
+
+/* Disabled button */
+button:disabled {
+    background: #ccc;
+    color: #666;
+    cursor: not-allowed;
+    transform: none;
+}
