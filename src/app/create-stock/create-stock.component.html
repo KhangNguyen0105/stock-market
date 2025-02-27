@@ -1,0 +1,39 @@
+<div class="container">
+  <h2>Tạo cổ phiếu mới</h2>
+  <form [formGroup]="stockForm" (ngSubmit)="onSubmit()">
+    
+    <!-- Tên cổ phiếu -->
+    <div class="form-group">
+      <label for="name">Tên cổ phiếu:</label>
+      <input id="name" type="text" formControlName="name" class="form-control"
+          [ngClass]="{ 'valid': stockForm.controls['name'].valid, 'invalid': stockForm.controls['name'].invalid && stockForm.controls['name'].touched }">
+    </div>
+
+    <!-- Mã cổ phiếu -->
+    <div class="form-group">
+        <label for="code">Mã cổ phiếu:</label>
+        <input id="code" type="text" formControlName="code" class="form-control"
+            (input)="onCodeChange($event.target.value)"
+            [ngClass]="{ 'valid': stockForm.controls['code'].valid, 'invalid': stockForm.controls['code'].invalid && stockForm.controls['code'].touched }">
+    </div>
+
+    <!-- Giá cổ phiếu -->
+    <div class="form-group">
+      <label for="price">Giá cổ phiếu:</label>
+      <input id="price" type="number" formControlName="price" class="form-control"
+          [ngClass]="{ 'default': !priceTouched, 'modified': priceTouched }"
+          (focus)="priceTouched = true" (blur)="priceTouched = true">
+    </div>
+
+    <!-- Checkbox xác nhận -->
+    <div class="form-group">
+      <label>
+        <input type="checkbox" formControlName="confirm">
+        Xác nhận thông tin trên là chính xác
+      </label>
+    </div>
+
+    <!-- Nút Tạo Cổ Phiếu -->
+    <button type="submit" [disabled]="stockForm.invalid">Tạo cổ phiếu</button>
+  </form>
+</div>

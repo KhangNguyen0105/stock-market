@@ -1,7 +1,10 @@
-<div class="stock-list">
-    <app-stock-item 
-      *ngFor="let stock of stocks" 
-      [stock]="stock">
-    </app-stock-item>
+<div class="container">
+  <div class="create-stock">
+    <app-create-stock (stockCreated)="addStock($event)"></app-create-stock>
   </div>
-  
+  <div class="stock-list">
+    <app-stock-item 
+        *ngFor="let stock of stocks" 
+        [stock]="stock"></app-stock-item>
+  </div>
+</div>
