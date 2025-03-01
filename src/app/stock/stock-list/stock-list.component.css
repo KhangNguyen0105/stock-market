@@ -1,12 +1,33 @@
-.stock-list {
+.container {
     display: flex;
-    flex-wrap: wrap;  /* Cho phép các phần tử tự xuống dòng */
-    gap: 16px; /* Khoảng cách giữa các stock */
-    justify-content: center; /* Canh giữa theo chiều ngang */
+    justify-content: space-around;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: auto;
     padding: 20px;
 }
 
-app-stock-item {
-    flex: 1 1 200px; /* Cố định mỗi stock có độ rộng tối thiểu là 200px */
-    max-width: 250px; /* Giới hạn độ rộng tối đa */
+.create-stock {
+    width: 300px;
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.stock-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.stock-item {
+    width: 250px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }

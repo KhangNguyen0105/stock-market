@@ -3,6 +3,9 @@
         <div class="name">
             <h3>{{ stock.name }}</h3> - <h4>{{ stock.code }}</h4>
         </div>
+        <div class="exchange">
+            <span>Sàn: {{ stock.exchange }}</span>
+        </div>
         <div class="price" [class]="stock.isPositiveChange() ? 'positive' : 'negative'">
             $ {{ stock.price }}
         </div>
@@ -11,3 +14,4 @@
         </button>
     </div>
 </div>
+  

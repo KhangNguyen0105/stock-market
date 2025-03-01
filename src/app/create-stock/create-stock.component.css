@@ -1,0 +1,59 @@
+.container {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+  
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 8px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background: #fff;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+  
+.valid {
+    background-color: #d4edda; /* Xanh nhạt khi hợp lệ */
+}
+
+.invalid {
+    background-color: #f8d7da; /* Hồng nhạt khi không hợp lệ */
+}
+
+.default {
+    background-color: #d4edda; /* Xanh nhạt mặc định */
+}
+
+.modified {
+    background-color: #f8d7da; /* Hồng nhạt khi có thay đổi */
+}
+  
