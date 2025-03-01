@@ -6,6 +6,7 @@ import { StockListComponent } from './stock/stock-list/stock-list.component';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [StockItemComponent, StockListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
