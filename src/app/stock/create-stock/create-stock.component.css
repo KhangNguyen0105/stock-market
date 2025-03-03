@@ -57,3 +57,10 @@ li {
     background-color: #f8d7da; /* Hồng nhạt khi có thay đổi */
 }
   
+.green {
+    background-color: #d4edda !important; /* Xanh nhạt */
+}
+
+.red {
+    background-color: #f8d7da !important; /* Hồng nhạt */
+}

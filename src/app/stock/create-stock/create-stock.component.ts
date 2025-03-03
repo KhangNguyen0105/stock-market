@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Stock } from '../model/stock';
+import { Stock } from '../../model/stock';
 
 @Component({
   selector: 'app-create-stock',
@@ -12,19 +12,18 @@ import { Stock } from '../model/stock';
 })
 export class CreateStockComponent {
   stockForm: FormGroup;
+  priceTouched: boolean = false; // Mặc định chưa được chạm vào
+  codeModified: boolean = false;
   @Output() stockCreated = new EventEmitter<Stock>();
 
-  codeChanged: boolean = false;
-  codeModified: boolean = false;
-  priceTouched: boolean = false;
 
   constructor(private fb: FormBuilder) {
     this.stockForm = this.fb.group({
       name: ['', Validators.required],
       code: ['', Validators.required],
       price: ['', [Validators.required]],
-      exchange: ['', Validators.required],
-      confirm: [false, Validators.requiredTrue]
+      exchange: ['', Validators.required], // ⚠️ Đảm bảo có input cho trường này
+      confirm: [false, Validators.requiredTrue] // ✅ Yêu cầu checkbox phải được chọn
     });
   }
 
@@ -38,13 +37,18 @@ export class CreateStockComponent {
         this.stockForm.value.exchange
       );
 
-      this.stockCreated.emit(newStock); // Tạo sự kiện với đối tượng `Stock`
-      this.stockForm.reset();
+      this.stockCreated.emit(newStock);
+
+      // ✅ Reset form nhưng giữ checkbox confirm không bị mất
+      this.stockForm.reset({ confirm: false });
     }
   }
 
-  onCodeChange(value: string) {
-    this.codeModified = value.trim() !== ''; // Nếu có nhập thì báo đã chỉnh sửa
+  onCodeChange(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    if (inputElement) {
+      this.codeModified = inputElement.value.trim() !== ''; 
+    }
   }
 
   onPriceFocus() {
@@ -52,6 +56,6 @@ export class CreateStockComponent {
   }
 
   onPriceBlur() {
-    this.priceTouched = false;
+    this.priceTouched = true; // ✅ Giữ trạng thái đã chạm vào input
   }
 }

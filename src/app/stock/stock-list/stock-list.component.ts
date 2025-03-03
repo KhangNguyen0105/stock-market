@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Stock } from '../../model/stock';
 import { StockItemComponent } from '../stock-item/stock-item.component';
 import { CommonModule } from '@angular/common';
-import { CreateStockComponent } from '../../create-stock/create-stock.component';
+import { CreateStockComponent } from '../create-stock/create-stock.component';
 
 @Component({
   selector: 'app-stock-list',
