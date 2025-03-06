@@ -22,8 +22,8 @@ export class CreateStockComponent {
       name: ['', Validators.required],
       code: ['', Validators.required],
       price: ['', [Validators.required]],
-      exchange: ['', Validators.required], // ⚠️ Đảm bảo có input cho trường này
-      confirm: [false, Validators.requiredTrue] // ✅ Yêu cầu checkbox phải được chọn
+      exchange: ['', Validators.required], // Đảm bảo có input cho trường này
+      confirm: [false, Validators.requiredTrue] // Yêu cầu checkbox phải được chọn
     });
   }
 
@@ -39,7 +39,7 @@ export class CreateStockComponent {
 
       this.stockCreated.emit(newStock);
 
-      // ✅ Reset form nhưng giữ checkbox confirm không bị mất
+      // Reset form nhưng giữ checkbox confirm không bị mất
       this.stockForm.reset({ confirm: false });
     }
   }
@@ -56,6 +56,6 @@ export class CreateStockComponent {
   }
 
   onPriceBlur() {
-    this.priceTouched = true; // ✅ Giữ trạng thái đã chạm vào input
+    this.priceTouched = true; // Giữ trạng thái đã chạm vào input
   }
 }

@@ -3,10 +3,11 @@ import { Stock } from '../../model/stock';
 import { StockItemComponent } from '../stock-item/stock-item.component';
 import { CommonModule } from '@angular/common';
 import { CreateStockComponent } from '../create-stock/create-stock.component';
+import { CreateStock2Component } from '../create-stock-2/create-stock-2.component';
 
 @Component({
   selector: 'app-stock-list',
-  imports: [CommonModule ,StockItemComponent, CreateStockComponent],
+  imports: [CommonModule ,StockItemComponent, CreateStockComponent, CreateStock2Component],
   templateUrl: './stock-list.component.html',
   styleUrl: './stock-list.component.css'
 })
