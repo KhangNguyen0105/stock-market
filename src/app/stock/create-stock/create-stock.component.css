@@ -49,18 +49,6 @@ li {
     background-color: #f8d7da; /* Hồng nhạt khi không hợp lệ */
 }
 
-.default {
-    background-color: #d4edda; /* Xanh nhạt mặc định */
-}
-
-.modified {
-    background-color: #f8d7da; /* Hồng nhạt khi có thay đổi */
-}
-  
-.green {
-    background-color: #d4edda !important; /* Xanh nhạt */
-}
-
-.red {
-    background-color: #f8d7da !important; /* Hồng nhạt */
+.error {
+    color: red;
 }

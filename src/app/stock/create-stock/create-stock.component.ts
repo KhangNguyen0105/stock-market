@@ -1,61 +1,33 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 import { Stock } from '../../model/stock';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-create-stock',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './create-stock.component.html',
   styleUrls: ['./create-stock.component.css']
 })
 export class CreateStockComponent {
-  stockForm: FormGroup;
-  priceTouched: boolean = false; // Mặc định chưa được chạm vào
-  codeModified: boolean = false;
+  stock: Stock = new Stock('', '', 0, 0, '');
+
   @Output() stockCreated = new EventEmitter<Stock>();
 
-
-  constructor(private fb: FormBuilder) {
-    this.stockForm = this.fb.group({
-      name: ['', Validators.required],
-      code: ['', Validators.required],
-      price: ['', [Validators.required]],
-      exchange: ['', Validators.required], // Đảm bảo có input cho trường này
-      confirm: [false, Validators.requiredTrue] // Yêu cầu checkbox phải được chọn
-    });
-  }
-
   onSubmit() {
-    if (this.stockForm.valid) {
-      const newStock: Stock = new Stock(
-        this.stockForm.value.name,
-        this.stockForm.value.code,
-        this.stockForm.value.price,
-        this.stockForm.value.price,
-        this.stockForm.value.exchange
+    if (this.stock.name && this.stock.code && this.stock.price > 0 && this.stock.exchange) {
+      const newStock = new Stock(
+        this.stock.name,
+        this.stock.code,
+        this.stock.price,
+        this.stock.price,
+        this.stock.exchange
       );
 
       this.stockCreated.emit(newStock);
 
-      // Reset form nhưng giữ checkbox confirm không bị mất
-      this.stockForm.reset({ confirm: false });
+      this.stock = new Stock('', '', 0, 0, '');
     }
-  }
-
-  onCodeChange(event: Event) {
-    const inputElement = event.target as HTMLInputElement;
-    if (inputElement) {
-      this.codeModified = inputElement.value.trim() !== ''; 
-    }
-  }
-
-  onPriceFocus() {
-    this.priceTouched = true;
-  }
-
-  onPriceBlur() {
-    this.priceTouched = true; // Giữ trạng thái đã chạm vào input
   }
 }
