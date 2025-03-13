@@ -55,8 +55,14 @@
       </div>
   
       <!-- Nút Submit -->
-      <!-- <button type="button" (click)="createStock()" [disabled]="stockForm.invalid">Create</button> -->
       <button type="button" (click)="onSubmit()">Create</button>
+
+      <!-- Nút tải dữ liệu từ server -->
+      <button type="button" (click)="loadStockFromServer()">Load Stock From Server</button>
+
+      <!-- Nút reset form -->
+      <button type="button" (click)="stockForm.reset({ confirm: false })">Reset Form</button>
+
 
     </form>
   
