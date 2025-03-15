@@ -1,11 +1,27 @@
 <div class="container">
+
+
+  <!-- Tìm kiếm
+  <div class="search-bar">
+    <input
+      type="text"
+      placeholder="Tìm kiếm theo tên hoặc mã cổ phiếu..."
+      [(ngModel)]="searchQuery"
+    />
+  </div> -->
+
+  <!-- Create Stock -->
   <div class="create-stock">
     <!-- <app-create-stock (stockCreated)="addStock($event)"></app-create-stock> -->
     <app-create-stock-2 (stockCreated)="addStock($event)"></app-create-stock-2>
   </div>
-  <div class="stock-list">
-    <app-stock-item 
-        *ngFor="let stock of stocks" 
-        [stock]="stock"></app-stock-item>
-  </div>
+
+  <!-- Danh sách stock đã lọc -->
+  <div *ngFor="let stock of stocks">
+    <app-stock-item
+      [stock]="stock"
+      (delete)="deleteStock($event)"
+      (edit)="editStock($event)">
+    </app-stock-item>
+  </div>  
 </div>

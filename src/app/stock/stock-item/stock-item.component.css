@@ -1,88 +1,72 @@
-/* .stock-container {
-    border: 1px solid black;
-    border-radius: 10px;
-    display: inline-block;
-    padding: 10px;
-}
-
-.stock-container .name h3,
-.stock-container .name h4 {
-    display: inline-block;
-}
-
-.price {
-    font-weight: bolder;
-}
-
-.stock-item {
-    text-align: center;
-}
-
-.positive {
-    color: rgb(35, 208, 35);
-}
-
-.negative {
-    color: red;
-} */
-
+/* Container chính */
 .stock-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* height: 100vh; */
     background-color: #f5f5f5;
-}
-
-.stock-item {
-    width: 250px; /* Đảm bảo tất cả stock-item có cùng kích thước */
-    height: 200px; /* Cố định chiều cao để không bị lệch */
+    padding: 20px;
+  }
+  
+  /* Card hiển thị stock */
+  .stock-item {
+    width: 280px;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 15px;
+    padding: 20px;
     box-sizing: border-box;
     text-align: center;
     background: white;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     border: 1px solid #ddd;
-}
+  }
   
-
-.exchange {
-    font-size: 14px;
-    font-weight: bolder;
-    color: #555;
-    margin: 5px 0;
-}
-
-.name h3, .name h4 {
+  /* Tên và mã cổ phiếu */
+  .name h3,
+  .name h4 {
     display: inline;
     font-weight: bold;
     margin: 0;
-}
-
-.price {
-    font-size: 20px;
+    color: #333;
+  }
+  
+  /* Thông tin sàn */
+  .exchange {
+    font-size: 14px;
+    font-weight: bolder;
+    color: #555;
+    margin: 8px 0;
+  }
+  
+  /* Giá */
+  .price {
+    font-size: 22px;
     margin-top: 10px;
     font-weight: bold;
-}
-
-.positive {
+  }
+  
+  .positive {
     color: green;
-}
-
-.negative {
+  }
+  
+  .negative {
     color: red;
-}
-
-/* Style for the button */
-button {
-    margin-top: 15px;
-    padding: 8px 15px;
+  }
+  
+  /* Các nhóm nút */
+  .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Khoảng cách giữa các nút */
+    margin-top: 12px;
+  }
+  
+  /* Nút chung */
+  button {
+    padding: 8px 16px;
     font-size: 14px;
     font-weight: bold;
     color: white;
@@ -91,17 +75,70 @@ button {
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease;
-}
-
-button:hover {
+    min-width: 90px; /* Để nút cân đối nhau */
+  }
+  
+  button:hover {
     background: linear-gradient(135deg, #ff6584, #ff4f70);
     transform: scale(1.05);
-}
-
-/* Disabled button */
-button:disabled {
+  }
+  
+  button:disabled {
     background: #ccc;
     color: #666;
     cursor: not-allowed;
     transform: none;
-}
+  }
+  
+  /* FORM EDIT CSS */
+  .stock-edit-form {
+    width: 300px;
+    background: white;
+    padding: 20px 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: 1px solid #ddd;
+  }
+  
+  .stock-edit-form h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Nhóm label + input */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  .form-group label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .form-group input,
+  .form-group select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    background: #f9f9f9;
+    transition: border 0.3s ease;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus {
+    border-color: #ff6584;
+    outline: none;
+  }
+  
+  /* Nhóm nút trong form */
+  .stock-edit-form .button-group {
+    display: flex;
+    justify-content: space-between;
+  }
+  

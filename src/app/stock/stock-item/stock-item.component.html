@@ -1,16 +1,56 @@
-<div class="stock-container">
-    <div class="stock-item">
-        <div class="name">
-            <h3>{{ stock.name }}</h3> - <h4>{{ stock.code }}</h4>
-        </div>
-        <div class="exchange">
-            <span>Sàn: {{ stock.exchange }}</span>
-        </div>
-        <div class="price" [class]="stock.isPositiveChange() ? 'positive' : 'negative'">
-            $ {{ stock.price }}
-        </div>
-        <button (click)="toggleFavorite($event)" [disabled]="stock.favorite">
-            {{ stock.favorite ? 'Favorited' : 'Add to Favorite' }}
-        </button>
+<!-- View Mode -->
+<div class="stock-item" *ngIf="!isEditing">
+    <div class="info">
+      <h3>{{ stock.name }} <small>({{ stock.code }})</small></h3>
+      <p>Sàn: {{ stock.exchange }}</p>
     </div>
-</div>
+  
+    <div class="price" [ngClass]="stock.isPositiveChange() ? 'positive' : 'negative'">
+      $ {{ stock.price }}
+    </div>
+  
+    <div class="actions">
+      <button (click)="toggleFavorite($event)" [disabled]="stock.favorite">
+        {{ stock.favorite ? 'Favorited' : 'Add to Favorite' }}
+      </button>
+      <button (click)="onEdit()">Edit</button>
+      <button (click)="onDelete()">Delete</button>
+    </div>
+  </div>
+  
+  <!-- Edit Mode -->
+  <div class="stock-edit-form" *ngIf="isEditing">
+    <form (ngSubmit)="saveEdit()">
+      <h3>Edit Stock</h3>
+  
+      <div class="form-group">
+        <label>Tên cổ phiếu:</label>
+        <input type="text" [(ngModel)]="editForm.name" name="name" />
+      </div>
+  
+      <div class="form-group">
+        <label>Mã cổ phiếu:</label>
+        <input type="text" [(ngModel)]="editForm.code" name="code" />
+      </div>
+  
+      <div class="form-group">
+        <label>Giá:</label>
+        <input type="number" [(ngModel)]="editForm.price" name="price" />
+      </div>
+  
+      <div class="form-group">
+        <label>Sàn giao dịch:</label>
+        <select [(ngModel)]="editForm.exchange" name="exchange">
+          <option value="HOSE">HOSE</option>
+          <option value="HNX">HNX</option>
+          <option value="UPCOM">UPCOM</option>
+        </select>
+      </div>
+  
+      <div class="actions">
+        <button type="submit">Save</button>
+        <button type="button" (click)="cancelEdit()">Cancel</button>
+      </div>
+    </form>
+  </div>
+  
