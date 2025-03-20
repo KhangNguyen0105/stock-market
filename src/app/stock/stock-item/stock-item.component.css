@@ -1,95 +1,101 @@
 /* Container chính */
 .stock-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f5f5f5;
-    padding: 20px;
-  }
-  
-  /* Card hiển thị stock */
-  .stock-item {
-    width: 280px;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px;
-    box-sizing: border-box;
-    text-align: center;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    border: 1px solid #ddd;
-  }
-  
-  /* Tên và mã cổ phiếu */
-  .name h3,
-  .name h4 {
-    display: inline;
-    font-weight: bold;
-    margin: 0;
-    color: #333;
-  }
-  
-  /* Thông tin sàn */
-  .exchange {
-    font-size: 14px;
-    font-weight: bolder;
-    color: #555;
-    margin: 8px 0;
-  }
-  
-  /* Giá */
-  .price {
-    font-size: 22px;
-    margin-top: 10px;
-    font-weight: bold;
-  }
-  
-  .positive {
-    color: green;
-  }
-  
-  .negative {
-    color: red;
-  }
-  
-  /* Các nhóm nút */
-  .button-group {
-    display: flex;
-    justify-content: center;
-    gap: 10px; /* Khoảng cách giữa các nút */
-    margin-top: 12px;
-  }
-  
-  /* Nút chung */
-  button {
-    padding: 8px 16px;
-    font-size: 14px;
-    font-weight: bold;
-    color: white;
-    background: linear-gradient(135deg, #ff7eb3, #ff758c);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    min-width: 90px; /* Để nút cân đối nhau */
-  }
-  
-  button:hover {
-    background: linear-gradient(135deg, #ff6584, #ff4f70);
-    transform: scale(1.05);
-  }
-  
-  button:disabled {
-    background: #ccc;
-    color: #666;
-    cursor: not-allowed;
-    transform: none;
-  }
-  
+  display: flex;
+  flex-wrap: wrap; /* Cho phép các item xuống hàng khi vượt quá chiều rộng */
+  justify-content: center;
+  gap: 20px; /* Khoảng cách giữa các stock-item */
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+
+/* Card hiển thị stock */
+.stock-item {
+  width: 280px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Thông tin cổ phiếu */
+.info h3 {
+  margin: 0;
+  font-weight: bold;
+  color: #333;
+}
+
+.info p {
+  margin: 8px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Giá cổ phiếu */
+.price {
+  font-size: 22px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
+}
+
+/* Khu vực hành động */
+.actions {
+  width: 100%;
+  margin-top: 12px;
+}
+
+.favorite-action {
+  margin-bottom: 8px; /* Khoảng cách giữa nút "Add to Favorite" và các nút khác */
+}
+
+.favorite-action button,
+.other-actions button {
+  width: 100%;
+  padding: 8px 0;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(135deg, #ff7eb3, #ff758c);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.favorite-action button:hover,
+.other-actions button:hover {
+  background: linear-gradient(135deg, #ff6584, #ff4f70);
+  transform: scale(1.05);
+}
+
+.favorite-action button:disabled {
+  background: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.other-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.other-actions button {
+  flex: 1;
+}
+
   /* FORM EDIT CSS */
   .stock-edit-form {
     width: 300px;

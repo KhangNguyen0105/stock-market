@@ -1,22 +1,27 @@
 <!-- View Mode -->
 <div class="stock-item" *ngIf="!isEditing">
-    <div class="info">
-      <h3>{{ stock.name }} <small>({{ stock.code }})</small></h3>
-      <p>Sàn: {{ stock.exchange }}</p>
-    </div>
-  
-    <div class="price" [ngClass]="stock.isPositiveChange() ? 'positive' : 'negative'">
-      $ {{ stock.price }}
-    </div>
-  
-    <div class="actions">
+  <div class="info">
+    <h3>{{ stock.name }} <small>({{ stock.code }})</small></h3>
+    <p>Sàn: {{ stock.exchange }}</p>
+  </div>
+
+  <div class="price" [ngClass]="stock.isPositiveChange() ? 'positive' : 'negative'">
+    $ {{ stock.price }}
+  </div>
+
+  <div class="actions">
+    <div class="favorite-action">
       <button (click)="toggleFavorite($event)" [disabled]="stock.favorite">
         {{ stock.favorite ? 'Favorited' : 'Add to Favorite' }}
       </button>
+    </div>
+    <div class="other-actions">
       <button (click)="onEdit()">Edit</button>
       <button (click)="onDelete()">Delete</button>
     </div>
   </div>
+</div>
+
   
   <!-- Edit Mode -->
   <div class="stock-edit-form" *ngIf="isEditing">
