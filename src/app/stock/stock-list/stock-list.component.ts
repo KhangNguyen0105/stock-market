@@ -19,34 +19,49 @@ export class StockListComponent implements OnInit {
   constructor(private stockService: StockService) {}
 
   ngOnInit(): void {
-    this.stocks = this.stockService.getStocks();
+    this.stockService.getStocks().subscribe((stocks: Stock[]) => {
+      this.stocks = stocks;
+    });
   }
 
   toggleFavorite(stock: Stock) {
     stock.favorite = !stock.favorite;
   }
 
-  addStock(newStock: Stock) {
-    this.stockService.addStock(newStock);
-    this.stocks = this.stockService.getStocks();
+  addStock(newStock: Stock): void {
+    this.stockService.addStock(newStock).subscribe(() => {
+      // Sau khi thêm, reload danh sách stocks
+      this.stockService.getStocks().subscribe((stocks: Stock[]) => {
+        this.stocks = stocks;
+      });
+    });
   }
 
-  deleteStock(code: string) {
-    const deleted = this.stockService.deleteStockByCode(code);
-    if (deleted) {
-      this.stocks = this.stockService.getStocks();
-    }
+  deleteStock(code: string): void {
+    this.stockService.deleteStockByCode(code).subscribe((deleted: boolean) => {
+      // Sau khi xóa, reload danh sách stocks
+      if (deleted) {
+        this.stockService.getStocks().subscribe((stocks: Stock[]) => {
+          this.stocks = stocks;
+        });
+      }
+    });
   }
   
-  editStock(stock: Stock) {
-    const edit = this.stockService.updateStockByCode(stock);
-    if (edit) {
-      this.stocks = this.stockService.getStocks();
-    }
+  editStock(stock: Stock): void {
+    this.stockService.updateStockByCode(stock).subscribe((updated: boolean) => {
+      // Sau khi cập nhật, reload danh sách stocks
+      if (updated) {
+        this.stockService.getStocks().subscribe((stocks: Stock[]) => {
+          this.stocks = stocks;
+        });
+      }
+    });
   }
 
-  onSearch(keyword: string) {
-    this.stocks = this.stockService.searchStocks(keyword);
+  onSearch(keyword: string): void {
+    this.stockService.searchStocks(keyword).subscribe((stocks: Stock[]) => {
+      this.stocks = stocks;
+    });
   }
-  
 }

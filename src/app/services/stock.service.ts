@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Stock } from '../model/stock';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,47 +16,42 @@ export class StockService {
 
   constructor() {}
 
-  getStocks(): Stock[] {
-    return this.stocks;
+  getStocks(): Observable<Stock[]> {
+    return of(this.stocks);
   }
 
-  addStock(stock: Stock): void {
+  addStock(stock: Stock): Observable<Stock> {
     this.stocks.push(stock);
     console.log(`Đã thêm cổ phiếu: ${stock.name} (${stock.code})`);
+    return of(stock);
   }
 
-  deleteStockByCode(code: string): boolean {
-    const index = this.stocks.findIndex(stock => stock.code === code);
-
-    if (index !== -1) {
-      const deletedStock = this.stocks.splice(index, 1)[0];
-      console.log(`Đã xoá cổ phiếu: ${deletedStock.name} (${deletedStock.code})`);
-      return true;
-    }
-
-    console.warn(`Không tìm thấy cổ phiếu có mã: ${code} để xoá`);
-    return false;
+  deleteStockByCode(code: string): Observable<boolean> {
+    this.stocks = this.stocks.filter(stock => stock.code !== code);
+    console.log(`Đã xóa cổ phiếu có mã: ${code}`);
+    return of(true);
   }
 
-  updateStockByCode(stock: Stock): boolean {
+  updateStockByCode(stock: Stock): Observable<boolean> {
     const existingStock = this.stocks.find(s => s.code === stock.code);
   
     if (existingStock) {
       Object.assign(existingStock, stock);
       console.log(`Đã cập nhật cổ phiếu: ${existingStock.name} (${existingStock.code})`, stock);
-      return true;
+      return of(true);
     }
   
     console.warn(`Không tìm thấy cổ phiếu có mã: ${stock.code} để cập nhật`);
-    return false;
+    return of(false);
   }
 
-  searchStocks(keyword: string): Stock[] {
+  searchStocks(keyword: string): Observable<Stock[]> {
     const lowerKeyword = keyword.toLowerCase();
-    return this.stocks.filter(stock =>
+    const filteredStocks = this.stocks.filter(stock =>
       stock.name.toLowerCase().includes(lowerKeyword) ||
       stock.code.toLowerCase().includes(lowerKeyword)
     );
+    return of(filteredStocks);
   }
   
   
