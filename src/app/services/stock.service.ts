@@ -49,5 +49,14 @@ export class StockService {
     console.warn(`Không tìm thấy cổ phiếu có mã: ${stock.code} để cập nhật`);
     return false;
   }
+
+  searchStocks(keyword: string): Stock[] {
+    const lowerKeyword = keyword.toLowerCase();
+    return this.stocks.filter(stock =>
+      stock.name.toLowerCase().includes(lowerKeyword) ||
+      stock.code.toLowerCase().includes(lowerKeyword)
+    );
+  }
+  
   
 }

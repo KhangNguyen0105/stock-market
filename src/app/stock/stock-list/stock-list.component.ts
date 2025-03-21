@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Stock } from '../../model/stock';
 import { StockItemComponent } from '../stock-item/stock-item.component';
 import { CommonModule } from '@angular/common';
-import { CreateStockComponent } from '../create-stock/create-stock.component';
 import { CreateStock2Component } from '../create-stock-2/create-stock-2.component';
 import { StockService } from '../../services/stock.service';
 import { FormsModule } from '@angular/forms';
+import { StockSearchComponent } from '../stock-search/stock-search.component';
 
 @Component({
   selector: 'app-stock-list',
-  imports: [FormsModule, CommonModule ,StockItemComponent, CreateStockComponent, CreateStock2Component],
+  imports: [FormsModule, CommonModule ,StockItemComponent, CreateStock2Component, StockSearchComponent],
   templateUrl: './stock-list.component.html',
   styleUrl: './stock-list.component.css'
 })
@@ -43,6 +43,10 @@ export class StockListComponent implements OnInit {
     if (edit) {
       this.stocks = this.stockService.getStocks();
     }
+  }
+
+  onSearch(keyword: string) {
+    this.stocks = this.stockService.searchStocks(keyword);
   }
   
 }

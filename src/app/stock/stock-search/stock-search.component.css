@@ -1,0 +1,14 @@
+.search-input {
+  width: 100%; /* Chiếm toàn bộ phần .stock-search */
+  max-width: 100%; /* Đảm bảo không vượt quá */
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.05);
+}
+
+.search-input input[type="text"] {
+  width: 100%;
+  box-sizing: border-box;
+}

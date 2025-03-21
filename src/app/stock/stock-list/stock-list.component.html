@@ -5,6 +5,11 @@
     <app-create-stock-2 (stockCreated)="addStock($event)"></app-create-stock-2>
   </div>
 
+   <!-- Search bar -->
+  <div class="stock-search">
+    <app-stock-search (searchKeyword)="onSearch($event)"></app-stock-search>
+  </div>
+
   <!-- Danh sách stock đã lọc -->
   <div class="stock-list">
     <div *ngFor="let stock of stocks">
