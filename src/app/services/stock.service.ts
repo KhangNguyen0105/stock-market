@@ -41,14 +41,18 @@ export class StockService {
     const existingStock = this.stocks.find(s => s.code === stock.code);
   
     if (existingStock) {
-      Object.assign(existingStock, stock);
-      console.log(`Đã cập nhật cổ phiếu: ${existingStock.name} (${existingStock.code})`, stock);
+      Object.assign(existingStock, {
+        ...stock,
+        isPositiveChange: stock.price >= stock.previousPrice
+      });
+  
+      console.log(`Đã cập nhật cổ phiếu: ${existingStock.name} (${existingStock.code})`, existingStock);
       return of(true);
     }
   
     console.warn(`Không tìm thấy cổ phiếu có mã: ${stock.code} để cập nhật`);
     return of(false);
-  }
+  }  
 
   searchStocks(keyword: string): Observable<Stock[]> {
     const lowerKeyword = keyword.toLowerCase();

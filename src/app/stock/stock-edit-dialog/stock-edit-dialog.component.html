@@ -1,0 +1,38 @@
+<div class="dialog-container">
+    <h2>Chỉnh sửa cổ phiếu</h2>
+<form [formGroup]="stockForm">
+  <div class="form-group">
+    <label for="name">Tên:</label>
+    <input id="name" type="text" formControlName="name" class="form-control">
+    <p *ngIf="f['name'].invalid && f['name'].touched" class="error">Tên phải có ít nhất 3 ký tự.</p>
+  </div>
+
+  <div class="form-group">
+    <label for="code">Mã:</label>
+    <input id="code" type="text" formControlName="code" class="form-control" [attr.readonly]="true">
+  </div>
+
+  <div class="form-group">
+    <label for="price">Giá:</label>
+    <input id="price" type="number" formControlName="price" class="form-control">
+    <p *ngIf="f['price'].invalid && f['price'].touched" class="error">Giá phải lớn hơn 0.</p>
+  </div>
+
+  <div class="form-group">
+    <label for="exchange">Sàn giao dịch:</label>
+    <select id="exchange" formControlName="exchange" class="form-control">
+      <option value="" disabled>Chọn sàn giao dịch</option>
+      <option value="HOSE">HOSE</option>
+      <option value="HNX">HNX</option>
+      <option value="UPCOM">UPCOM</option>
+    </select>
+    <p *ngIf="f['exchange'].invalid && f['exchange'].touched" class="error">Vui lòng chọn sàn giao dịch.</p>
+  </div>
+
+  <div class="dialog-actions">
+    <button type="button" class="btn btn-secondary" (click)="onCancel()">Hủy</button>
+    <button type="button" class="btn btn-primary" (click)="onSave()" [disabled]="stockForm.invalid">Lưu</button>
+  </div>
+</form>
+
+</div>

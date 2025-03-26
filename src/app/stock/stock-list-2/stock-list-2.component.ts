@@ -4,6 +4,7 @@ import { StockService } from '../../services/stock.service';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { StockDetailDialogComponent } from '../stock-detail-dialog/stock-detail-dialog.component';
+import { StockEditDialogComponent } from '../stock-edit-dialog/stock-edit-dialog.component';
 
 @Component({
   selector: 'app-stock-list-2',
@@ -62,9 +63,17 @@ export class StockList2Component {
   }
   
   editStock(stock: Stock): void {
-    this.stockService.updateStockByCode(stock).subscribe((updated: boolean) => {
-      // Sau khi cập nhật, reload danh sách stocks
-      if (updated) this.refreshStocks();
+    const dialogRef = this.dialog.open(StockEditDialogComponent, {
+      width: '400px',
+      data: stock
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.stockService.updateStockByCode(result).subscribe(() => {
+          this.refreshStocks();
+        });
+      }
     });
   }
 
@@ -77,8 +86,8 @@ export class StockList2Component {
     }
 
     this.stockService.searchStocks(keyword).subscribe((stocks: Stock[]) => {
-      console.log("🔍 Kết quả tìm kiếm:", stocks); // ✅ Debug
-      this.stocks = [...stocks]; // ✅ Spread Operator kích hoạt UI update
+      console.log("🔍 Kết quả tìm kiếm:", stocks);
+      this.stocks = [...stocks];
     });
   }
 
