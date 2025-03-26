@@ -1,2 +1,10 @@
-<h1 style="text-align: center;">Welcome to Stock Market</h1>
-<app-stock-list></app-stock-list>
+<div class="container">
+  <app-create-stock-2 (stockCreated)="onStockCreated($event)"></app-create-stock-2>
+  
+  <div class="app-content">
+    <h1 style="text-align: center;">Welcome to Stock Market</h1>
+    <app-stock-search (searchKeyword)="onSearchStock($event)"></app-stock-search>
+    <app-stock-list-2 [searchKeyword]="searchValue" [newStock]="newStock"></app-stock-list-2>
+  </div>
+</div>
+  

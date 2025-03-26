@@ -1,0 +1,44 @@
+/* Tổng quan layout */
+.container {
+    display: flex;
+    gap: 16px; /* Tạo khoảng cách giữa sidebar và nội dung */
+    padding: 16px;
+  }
+  
+  /* Sidebar bên trái */
+  app-create-stock-2 {
+    width: 280px; /* Độ rộng sidebar */
+    min-height: 100vh; /* Chiều cao tối thiểu bằng chiều cao màn hình */
+    background-color: #f8f9fa; /* Màu nền nhẹ nhàng */
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: auto; /* Cho phép cuộn nếu nội dung quá dài */
+  }
+  
+  /* Định dạng search bar và danh sách cổ phiếu bên phải */
+  .app-content {
+    flex: 1; /* Lấy hết không gian còn lại */
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  /* Search bar */
+  app-stock-search {
+    width: 100%;
+    padding: 12px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Danh sách cổ phiếu */
+  app-stock-list-2 {
+    flex: 1; /* Chiếm phần còn lại của cột phải */
+    background: #ffffff;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  

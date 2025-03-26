@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Stock } from '../../model/stock';
+import { StockService } from '../../services/stock.service';
 
 @Component({
   selector: 'app-create-stock-2',
@@ -13,10 +14,9 @@ import { Stock } from '../../model/stock';
 export class CreateStock2Component {
   stockForm: FormGroup;
   submitted = false;
-  stockList: Stock[] = [];
   @Output() stockCreated = new EventEmitter<any>();
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private stockservice: StockService) {
     this.stockForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       code: ['', [Validators.required, Validators.pattern('^[A-Z0-9]+$')]],
@@ -43,7 +43,6 @@ export class CreateStock2Component {
         this.stockForm.value.exchange
       );
 
-      this.stockList.push(newStock);
       this.stockCreated.emit(newStock);
 
       this.stockForm.reset({ confirm: false });

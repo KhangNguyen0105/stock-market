@@ -20,6 +20,11 @@ export class StockService {
     return of(this.stocks);
   }
 
+  getStockByCode(code: string): Observable<Stock | undefined> { 
+    const stock = this.stocks.find(s => s.code === code);
+    return of(stock);
+  }
+
   addStock(stock: Stock): Observable<Stock> {
     this.stocks.push(stock);
     console.log(`Đã thêm cổ phiếu: ${stock.name} (${stock.code})`);
@@ -28,7 +33,7 @@ export class StockService {
 
   deleteStockByCode(code: string): Observable<boolean> {
     this.stocks = this.stocks.filter(stock => stock.code !== code);
-    console.log(`Đã xóa cổ phiếu có mã: ${code}`);
+    // console.log(`Đã xóa cổ phiếu có mã: ${code}`);
     return of(true);
   }
 

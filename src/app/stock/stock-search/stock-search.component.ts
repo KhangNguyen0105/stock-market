@@ -10,8 +10,6 @@ export class StockSearchComponent {
 
   onSearch(event: Event) {
     const input = event.target as HTMLInputElement;
-    const keyword = input.value;
-    this.searchKeyword.emit(keyword);
+    this.searchKeyword.emit(input.value.trim());
   }
-  
 }
