@@ -1,10 +1,10 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 import { Stock } from '../../model/stock';
-import { StockService } from '../../services/stock.service';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { StockDetailDialogComponent } from '../stock-detail-dialog/stock-detail-dialog.component';
 import { StockEditDialogComponent } from '../stock-edit-dialog/stock-edit-dialog.component';
+import { HttpService } from '../../services/http.service';
 
 @Component({
   selector: 'app-stock-list-2',
@@ -17,7 +17,7 @@ export class StockList2Component {
   @Input() newStock: Stock | null = null;
   stocks: Stock[] = [];
 
-  constructor(private stockService: StockService, private dialog: MatDialog) {}
+  constructor(private httpService: HttpService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.refreshStocks();
@@ -34,7 +34,7 @@ export class StockList2Component {
   }
 
   refreshStocks() {
-    this.stockService.getStocks().subscribe((stocks: Stock[]) => {
+    this.httpService.getStocks().subscribe((stocks: Stock[]) => {
       this.stocks = [...stocks];
     });
   }
@@ -44,18 +44,23 @@ export class StockList2Component {
   }
 
   addStock(stock: Stock): void {
-    this.stockService.addStock(stock).subscribe(() => {
+    this.httpService.postStock(stock).subscribe(() => {
       this.refreshStocks();
     });
   }
 
-  deleteStock(code: string): void {
-    const stock = this.stocks.find(s => s.code === code);
+  deleteStock(id?: number): void {
+    if (id === undefined) {
+      console.error('ID cổ phiếu không hợp lệ!');
+      return;
+    }
+
+    const stock = this.stocks.find(s => s.id === id);
     if (!stock) return;
 
     const confirmDelete = window.confirm(`Bạn có chắc chắn muốn xóa cổ phiếu: ${stock.name} (${stock.code})?`);
     if (confirmDelete) {
-      this.stockService.deleteStockByCode(code).subscribe((deleted: boolean) => {
+      this.httpService.deleteStockById(id).subscribe((deleted: boolean) => {
         // Sau khi xóa, reload danh sách stocks
         if (deleted) this.refreshStocks();
       });
@@ -70,7 +75,7 @@ export class StockList2Component {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.stockService.updateStockByCode(result).subscribe(() => {
+        this.httpService.updateStock(result).subscribe(() => {
           this.refreshStocks();
         });
       }
@@ -85,14 +90,19 @@ export class StockList2Component {
       return;
     }
 
-    this.stockService.searchStocks(keyword).subscribe((stocks: Stock[]) => {
-      console.log("🔍 Kết quả tìm kiếm:", stocks);
+    this.httpService.searchStocks(keyword).subscribe((stocks: Stock[]) => {
+      console.log("Kết quả tìm kiếm:", stocks);
       this.stocks = [...stocks];
     });
   }
 
   viewDetails(stock: Stock) {
-    this.stockService.getStockByCode(stock.code).subscribe(stock => {
+    if (stock.id === undefined) {
+      console.error('ID cổ phiếu không hợp lệ!');
+      return;
+    }
+
+    this.httpService.getStockByID(stock.id).subscribe(stock => {
       if (stock) {
         this.dialog.open(StockDetailDialogComponent, {
           width: '400px',

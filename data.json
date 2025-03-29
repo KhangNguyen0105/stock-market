@@ -1,0 +1,31 @@
+{
+  "stocks": [
+    {
+      "id": 1,
+      "name": "Test Stock Company",
+      "code": "TSC",
+      "price": 85,
+      "previousPrice": 80,
+      "exchange": "HOSE",
+      "favorite": false
+    },
+    {
+      "id": 2,
+      "name": "Google",
+      "code": "GOOGL",
+      "price": 2750,
+      "previousPrice": 2725,
+      "exchange": "NASDAQ",
+      "favorite": false
+    },
+    {
+      "id": 3,
+      "name": "Apple",
+      "code": "AAPL",
+      "price": 150,
+      "previousPrice": 145,
+      "exchange": "NASDAQ",
+      "favorite": false
+    }
+  ]
+}
