@@ -49,7 +49,7 @@ export class StockList2Component {
     });
   }
 
-  deleteStock(id?: number): void {
+  deleteStock(id?: string): void {
     if (id === undefined) {
       console.error('ID cổ phiếu không hợp lệ!');
       return;
@@ -67,6 +67,7 @@ export class StockList2Component {
     }
   }
   
+  
   editStock(stock: Stock): void {
     const dialogRef = this.dialog.open(StockEditDialogComponent, {
       width: '400px',
@@ -74,12 +75,19 @@ export class StockList2Component {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      console.log("Dialog closed with result:", result);
       if (result) {
         this.httpService.updateStock(result).subscribe(() => {
+          console.log("Stock updated successfully");
           this.refreshStocks();
+        }, error => {
+          console.error("Error updating stock:", error);
         });
+      } else {
+        console.log("No result received");
       }
     });
+    
   }
 
   onSearch(): void {

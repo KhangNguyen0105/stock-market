@@ -1,5 +1,5 @@
 export class Stock {
-    id?: number;
+    id?: string;
     favorite: boolean = false;
 
     constructor(

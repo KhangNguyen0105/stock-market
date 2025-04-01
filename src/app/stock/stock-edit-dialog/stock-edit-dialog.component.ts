@@ -19,6 +19,7 @@ export class StockEditDialogComponent {
     @Inject(MAT_DIALOG_DATA) public stock: Stock
   ) {
     this.stockForm = this.fb.group({
+      id: [stock.id],
       name: [stock.name, [Validators.required, Validators.minLength(3)]],
       code: [stock.code, [Validators.required, Validators.pattern('^[A-Z0-9]+$')]],
       price: [stock.price, [Validators.required, Validators.min(1)]],

@@ -24,12 +24,12 @@ export class HttpService {
     return this.http.post<Stock>(this.REST_API_SERVER, stock, this.httpOptions);
   }
 
-  deleteStockById(id: number): Observable<boolean> {
+  deleteStockById(id: string): Observable<boolean> {
     return this.http.delete<boolean>(`${this.REST_API_SERVER}/${id}`, this.httpOptions);
   }
-
+  
   updateStock(stock: Stock): Observable<Stock> {
-    return this.http.put<Stock>(`${this.REST_API_SERVER}/${stock.code}`, stock, this.httpOptions);
+    return this.http.put<Stock>(`${this.REST_API_SERVER}/${stock.id}`, stock, this.httpOptions);
   }
 
   searchStocks(keyword: string): Observable<any> {
@@ -37,7 +37,7 @@ export class HttpService {
     return this.http.get<Stock[]>(`${this.REST_API_SERVER}?q=${lowerKeyword}`, this.httpOptions);
   }
 
-  getStockByID(id: number): Observable<any> {
+  getStockByID(id: string): Observable<any> {
     return this.http.get<Stock>(`${this.REST_API_SERVER}/${id}`, this.httpOptions);
   }
 
