@@ -2,12 +2,10 @@
   "stocks": [
     {
       "id": "3",
-      "name": "Apple",
+      "name": "ApplePen",
       "code": "AAPL",
       "price": 150,
-      "previousPrice": 145,
-      "exchange": "NASDAQ",
-      "favorite": false
+      "exchange": "NASDAQ"
     },
     {
       "id": "b602",
@@ -71,6 +69,85 @@
       "previousPrice": 21500,
       "exchange": "HOSE",
       "favorite": false
+    },
+    {
+      "id": "3",
+      "name": "Apple",
+      "code": "AAPL",
+      "price": 150,
+      "previousPrice": 145,
+      "exchange": "NASDAQ",
+      "favorite": false
+    },
+    {
+      "id": "b602",
+      "name": "Vinamilk",
+      "code": "VNM",
+      "price": 80000,
+      "previousPrice": 80000,
+      "exchange": "HOSE",
+      "favorite": false
+    },
+    {
+      "id": "x123",
+      "name": "Microsoft",
+      "code": "MSFT",
+      "price": 310,
+      "previousPrice": 305,
+      "exchange": "NASDAQ",
+      "favorite": true
+    },
+    {
+      "id": "y456",
+      "name": "Google",
+      "code": "GOOGL",
+      "price": 2800,
+      "previousPrice": 2750,
+      "exchange": "NASDAQ",
+      "favorite": false
+    },
+    {
+      "id": "z789",
+      "name": "Tesla",
+      "code": "TSLA",
+      "price": 950,
+      "previousPrice": 940,
+      "exchange": "NASDAQ",
+      "favorite": true
+    },
+    {
+      "id": "a111",
+      "name": "FPT",
+      "code": "FPT",
+      "price": 95000,
+      "previousPrice": 94000,
+      "exchange": "HOSE",
+      "favorite": false
+    },
+    {
+      "id": "b222",
+      "name": "VNDirect",
+      "code": "VND",
+      "price": 24000,
+      "previousPrice": 23500,
+      "exchange": "HOSE",
+      "favorite": true
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "email": "admin@gmail.com",
+      "password": "admin123",
+      "name": "Admin User",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "email": "user@gmail.com",
+      "password": "user123",
+      "name": "Regular User",
+      "role": "user"
     }
   ]
 }

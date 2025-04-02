@@ -1,9 +1,12 @@
 html,
 body {
-  display: grid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100%;
   width: 100%;
   background: #f2f2f2;
+  overflow-x: hidden;
 }
 ::selection {
   background: #4158d0;

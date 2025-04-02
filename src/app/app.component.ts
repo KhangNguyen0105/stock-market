@@ -1,15 +1,12 @@
 import { Component } from '@angular/core';
-import { CreateStock2Component } from './stock/create-stock-2/create-stock-2.component';
-import { StockSearchComponent } from './stock/stock-search/stock-search.component';
-import { StockList2Component } from './stock/stock-list-2/stock-list-2.component';
 import { Stock } from './model/stock';
-import { GetDataComponent } from './stock/get-data/get-data.component';
-import { PostDataComponent } from './stock/post-data/post-data.component';
+import { HeaderComponent } from './header/header.component';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CreateStock2Component, StockSearchComponent, StockList2Component, GetDataComponent, PostDataComponent],
+  imports: [HeaderComponent, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
