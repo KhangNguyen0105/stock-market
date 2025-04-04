@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Stock } from '../../model/stock';
-import { StockService } from '../../services/stock.service';
+import { Router } from '@angular/router';
+import { HttpService } from '../../services/http.service';
 
 @Component({
   selector: 'app-create-stock-2',
@@ -16,7 +17,7 @@ export class CreateStock2Component {
   submitted = false;
   @Output() stockCreated = new EventEmitter<any>();
 
-  constructor(private fb: FormBuilder, private stockservice: StockService) {
+  constructor(private fb: FormBuilder, private router: Router, private http: HttpService) {
     this.stockForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       code: ['', [Validators.required, Validators.pattern('^[A-Z0-9]+$')]],
@@ -35,15 +36,31 @@ export class CreateStock2Component {
     console.log("Form control status:", this.stockForm.status);
 
     if (this.stockForm.valid) {
-      const newStock: Stock = new Stock(
-        this.stockForm.value.name,
-        this.stockForm.value.code,
-        this.stockForm.value.price,
-        this.stockForm.value.price,
-        this.stockForm.value.exchange
-      );
+      const newStock: Stock = {
+        id: '',
+        name: this.stockForm.value.name,
+        code: this.stockForm.value.code,
+        price: this.stockForm.value.price,
+        previousPrice: this.stockForm.value.price,
+        exchange: this.stockForm.value.exchange,
+        favorite: false,
+        isPositiveChange: function (): boolean {
+          return this.price >= this.previousPrice;
+        }
+      };
 
-      this.stockCreated.emit(newStock);
+      this.http.postStock(newStock).subscribe({
+        next: (stock) => {
+          console.log('Cổ phiếu đã được tạo:', stock);
+          this.stockCreated.emit(stock);
+          this.stockForm.reset({ confirm: false });
+          
+        },
+        error: (err) => {
+          console.error('Lỗi khi tạo cổ phiếu:', err);
+        }
+      });
+        
 
       this.stockForm.reset({ confirm: false });
     }
@@ -55,7 +72,7 @@ export class CreateStock2Component {
   loadStockFromServer() {
     // Giả lập lấy dữ liệu từ server, có thể sau này là gọi API
     const stockFromServer = {
-      name: 'Vinamilk',
+      name: 'loadStockFromServer Worked',
       code: 'VNM',
       price: 80000,
       exchange: 'HOSE'

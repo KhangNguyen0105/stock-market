@@ -1,3 +1,5 @@
+<app-stock-search (searchKeyword)="onSearchStock($event)"></app-stock-search>
+
 <div class="table-container">
     <table class="table table-striped">
       <thead>
@@ -17,7 +19,7 @@
           <td>{{ stock.price | currency: 'USD' }}</td>
           <td>{{ stock.exchange }}</td>
           <td>
-            <button 
+            <button *ngIf="user"
               class="favorite-btn" 
               (click)="stock.favorite = !stock.favorite" 
               [disabled]="stock.favorite">
@@ -25,8 +27,12 @@
             </button>
           </td>
           <td>
-            <button class="btn btn-primary btn-sm" (click)="editStock(stock)">Sửa</button>
-            <button class="btn btn-danger btn-sm" (click)="deleteStock(stock.id)">Xóa</button>
+            <button *ngIf="user && user.role === 'admin'"
+              class="btn btn-primary btn-sm" (click)="editStock(stock)">Sửa
+            </button>
+            <button *ngIf="user && user.role === 'admin'"
+              class="btn btn-danger btn-sm" (click)="deleteStock(stock.id)">Xóa
+            </button>
             <button class="btn btn-info btn-sm" (click)="viewDetails(stock)">Chi tiết</button>
           </td>
         </tr>

@@ -1,0 +1,53 @@
+<div class="wrapper">
+    <div class="title">Register</div>
+    <form #registerForm="ngForm" (ngSubmit)="register()">
+  
+      <!-- Họ và tên -->
+      <div class="field">
+        <input id="name" type="text" name="name" required [(ngModel)]="name" #nameRef="ngModel">
+        <label for="name">Full name</label>
+      </div>
+      <p *ngIf="nameRef.invalid && nameRef.touched" class="error">Please enter Full name.</p>
+  
+      <!-- Email -->
+      <div class="field">
+        <input id="email" type="email" name="email" required [(ngModel)]="email" #emailRef="ngModel">
+        <label for="email">Email</label>
+      </div>
+      <p *ngIf="emailRef.invalid && emailRef.touched" class="error">Please enter a valid email.</p>
+  
+      <!-- Mật khẩu -->
+      <div class="field password-field">
+        <input id="password" type="password" name="password" required [(ngModel)]="password"
+               minlength="6" #passwordRef="ngModel">
+        <label for="password">Password</label>
+      </div>
+      <p *ngIf="passwordRef.invalid && passwordRef.touched" class="error">Password must be at least 6 characters.</p>
+  
+      <!-- Vai trò -->
+      <div class="field">
+        <select id="role" name="role" required [(ngModel)]="role" #roleRef="ngModel">
+          <option value="" disabled selected>Select role</option>
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+      <p *ngIf="roleRef.invalid && roleRef.touched" class="error">Please select role.</p>
+  
+      <!-- Submit -->
+      <div class="field">
+        <input type="submit" value="Register" [disabled]="registerForm.invalid">
+      </div>
+  
+      <!-- Thông báo -->
+      <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+      <p class="success-message" *ngIf="successMessage">{{ successMessage }}</p>
+  
+      <!-- Link đăng nhập -->
+      <div class="signup-link">
+        Already have an account?
+        <a routerLink="/login" routerLinkActive="active">Login</a>
+      </div>
+    </form>
+  </div>
+  

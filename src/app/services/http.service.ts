@@ -20,7 +20,7 @@ export class HttpService {
     return this.http.get<Stock[]>(this.REST_API_SERVER, this.httpOptions);
   }
 
-  postStock(stock: any): Observable<any> {
+  postStock(stock: Stock): Observable<any> {
     return this.http.post<Stock>(this.REST_API_SERVER, stock, this.httpOptions);
   }
 

@@ -1,0 +1,36 @@
+<div class="wrapper">
+  <div class="title">
+    Login
+  </div>
+  <form (submit)="login()">
+    <div class="field">
+      <input type="text" name="email" [(ngModel)]="email" required>
+      <label>Email Address</label>
+    </div>
+    <div class="field password-field">
+      <input [type]="showPassword ? 'text' : 'password'" name="password" [(ngModel)]="password" required>
+
+      <label>Password</label>
+      <span class="toggle-password" (click)="togglePasswordVisibility()">
+        <i [class]="showPassword ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'"></i>
+      </span>
+    </div>
+    <div class="content">
+      <div class="checkbox">
+        <input type="checkbox" id="remember-me">
+        <label for="remember-me">Remember me</label>
+      </div>
+      <div class="pass-link">
+        <a href="#">Forgot password?</a>
+      </div>
+    </div>
+    <div class="field">
+      <input type="submit" value="Login">
+    </div>
+    <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+    <div *ngIf="isLoading" class="loading-indicator">Logging in...</div>
+    <div class="signup-link">
+      Not a member? <a href="#">Signup now</a>
+    </div>
+  </form>
+</div>

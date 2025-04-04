@@ -5,32 +5,43 @@ import { MatDialog } from '@angular/material/dialog';
 import { StockDetailDialogComponent } from '../stock-detail-dialog/stock-detail-dialog.component';
 import { StockEditDialogComponent } from '../stock-edit-dialog/stock-edit-dialog.component';
 import { HttpService } from '../../services/http.service';
+import { StockSearchComponent } from '../stock-search/stock-search.component';
 
 @Component({
   selector: 'app-stock-list-2',
-  imports: [CommonModule],
+  imports: [CommonModule, StockSearchComponent],
   templateUrl: './stock-list-2.component.html',
   styleUrl: './stock-list-2.component.css'
 })
 export class StockList2Component {
-  @Input() searchKeyword: string = '';
   @Input() newStock: Stock | null = null;
   stocks: Stock[] = [];
+  user: any;
+  searchKeyword: string = '';
+
+  
 
   constructor(private httpService: HttpService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.refreshStocks();
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['searchKeyword']) {
-      this.onSearch();
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const userData = localStorage.getItem('user');
+      if (userData) {
+        this.user = JSON.parse(userData);
+      }
     }
 
-    if (changes['newStock'] && this.newStock) {
+    this.refreshStocks();
+
+    if (this.newStock) {
       this.addStock(this.newStock);
     }
+  }
+
+  onSearchStock(keyword: string) {  
+    console.log("Keyword:", keyword);
+    this.searchKeyword = keyword.trim();
+    this.onSearch();
   }
 
   refreshStocks() {
@@ -87,22 +98,22 @@ export class StockList2Component {
         console.log("No result received");
       }
     });
-    
   }
 
   onSearch(): void {
     const keyword = this.searchKeyword.trim();
-
-    if (!keyword) {
-      this.refreshStocks();
-      return;
-    }
-
-    this.httpService.searchStocks(keyword).subscribe((stocks: Stock[]) => {
-      console.log("Kết quả tìm kiếm:", stocks);
-      this.stocks = [...stocks];
+    this.httpService.searchStocks(keyword).subscribe({
+      next: (stocks: Stock[]) => {
+        console.log("Kết quả tìm kiếm (raw):", stocks);
+        this.stocks = stocks;
+      },
+      error: (error) => {
+        console.error("Lỗi tìm kiếm cổ phiếu:", error);
+      }
     });
+    
   }
+  
 
   viewDetails(stock: Stock) {
     if (stock.id === undefined) {

@@ -2,10 +2,25 @@
   <div class="header-content">
     <nav>
       <ul>
-        <li><a routerLink="stock-list" routerLinkActive="active">Stock List</a></li>
-        <li><a routerLink="/create-stock" routerLinkActive="active">Create Stock</a></li>
-        <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
-        <li style="padding-right: 20px;"><a href="#">Register</a></li>
+        <li>
+          <a routerLink="/stock-list" routerLinkActive="active">Stock List</a>
+        </li>
+
+        <li *ngIf="user && user.role === 'admin'">
+          <a routerLink="/create-stock" routerLinkActive="active">Create Stock</a>
+        </li>
+
+        <li *ngIf="!user">
+          <a routerLink="/login" routerLinkActive="active">Login</a>
+        </li>
+
+        <li *ngIf="!user" style="padding-right: 20px;">
+          <a routerLink="/register" routerLinkActive="active">Register</a>
+        </li>
+        
+        <li *ngIf="user">
+          <a href="#" (click)="logout()">Logout ({{ user.name }})</a>
+        </li>
       </ul>
     </nav>
     <h1>Welcome to Stock Market</h1>

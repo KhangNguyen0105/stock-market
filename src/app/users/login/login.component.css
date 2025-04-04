@@ -123,3 +123,24 @@ form .pass-link a:hover,
 form .signup-link a:hover {
   text-decoration: underline;
 }
+
+.password-field {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #888;
+}
+
+.toggle-password:hover {
+  color: #333;
+}
+
+.toggle-password i {
+  font-size: 16px;
+}

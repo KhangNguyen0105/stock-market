@@ -12,17 +12,5 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'stock-market';
-  
-  searchValue: string = '';
-  newStock: Stock | null = null;
-
-  onSearchStock(keyword: string) {  
-    console.log('Tìm kiếm với từ khóa:', keyword);
-    this.searchValue = keyword;
-  }
-
-  onStockCreated(stock: Stock) {
-    this.newStock = stock;
-  }
 }
  
